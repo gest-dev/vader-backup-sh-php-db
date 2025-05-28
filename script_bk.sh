@@ -20,9 +20,9 @@ mysqldump --host="$DB_HOST" --user="$DB_USER" --password="$DB_PASS" --default-ch
 chmod 644 "$fullpathbackupfile"
 
 # Executa o script PHP de upload
-php "$PHP_UPLOAD_SCRIPT"
+php "/home/u431758052/domains/gestclin.com.br/script_bk/upload_backup.php"
 
 # Retorna caminho do backup
-echo /home/u431758052/domains/gestclin.com.br/script_bk/upload_backup.php
+echo "$fullpathbackupfile"
 
 exit 0
