@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php'; // Primeiro carrega o autoload
+
 use Aws\S3\S3Client;
 use Carbon\Carbon;
 use Dotenv\Dotenv;
@@ -7,14 +9,14 @@ use Dotenv\Dotenv;
 // Carrega o .env
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
-// Dados do S3 da Contabo
 
+// Dados do S3 da Contabo
 define('S3_STORAGE_ACCESS_KEY_ID', $_ENV['S3_STORAGE_ACCESS_KEY_ID']);
 define('S3_STORAGE_SECRET_ACCESS_KEY', $_ENV['S3_STORAGE_SECRET_ACCESS_KEY']);
 define('S3_STORAGE_ENDPOINT', $_ENV['S3_STORAGE_ENDPOINT']);
 define('S3_STORAGE_BUCKET', $_ENV['S3_STORAGE_BUCKET']);
 
-require __DIR__ . '/vendor/autoload.php';
+
 
 
 // Função de formatação de tamanho
