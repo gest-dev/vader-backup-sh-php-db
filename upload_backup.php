@@ -1,13 +1,13 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php'; // Primeiro carrega o autoload
+require __DIR__ . '/vendor/autoload.php'; // 1º passo
 
 use Aws\S3\S3Client;
 use Carbon\Carbon;
 use Dotenv\Dotenv;
 
 // Carrega o .env
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(__DIR__); // __DIR__ deve conter o .env
 $dotenv->load();
 
 // Dados do S3 da Contabo
