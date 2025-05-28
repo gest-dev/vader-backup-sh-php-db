@@ -11,7 +11,7 @@ filename="db_backup_ativ_novo_$now.gz"
 fullpathbackupfile="$BACKUP_FOLDER/$filename"
 
 # Limpa todos os backups anteriores (opcional)
-rm -f "$BACKUP_FOLDER"/db_backup_*
+rm -f /home/u431758052/domains/gestclin.com.br/script_bk/backups_mysql/db_backup_*
 
 # Gera backup compactado
 mysqldump --host="$DB_HOST" --user="$DB_USER" --password="$DB_PASS" --default-character-set=utf8 "$DB_NAME" | gzip > "$fullpathbackupfile"
@@ -23,6 +23,6 @@ chmod 644 "$fullpathbackupfile"
 php "$PHP_UPLOAD_SCRIPT"
 
 # Retorna caminho do backup
-echo "$fullpathbackupfile"
+echo /home/u431758052/domains/gestclin.com.br/script_bk/upload_backup.php
 
 exit 0
