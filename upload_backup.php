@@ -11,10 +11,15 @@ $dotenv = Dotenv::createImmutable(__DIR__); // __DIR__ deve conter o .env
 $dotenv->load();
 
 // Dados do S3 da Contabo
-define('S3_STORAGE_ACCESS_KEY_ID', $_ENV['S3_STORAGE_ACCESS_KEY_ID']);
-define('S3_STORAGE_SECRET_ACCESS_KEY', $_ENV['S3_STORAGE_SECRET_ACCESS_KEY']);
-define('S3_STORAGE_ENDPOINT', $_ENV['S3_STORAGE_ENDPOINT']);
-define('S3_STORAGE_BUCKET', $_ENV['S3_STORAGE_BUCKET']);
+define('S3_STORAGE_ACCESS_KEY_ID', getenv('S3_STORAGE_ACCESS_KEY_ID'));
+define('S3_STORAGE_SECRET_ACCESS_KEY', getenv('S3_STORAGE_SECRET_ACCESS_KEY'));
+define('S3_STORAGE_ENDPOINT', getenv('S3_STORAGE_ENDPOINT'));
+define('S3_STORAGE_BUCKET', getenv('S3_STORAGE_BUCKET'));
+
+define('HUBOOT_URL', getenv('HUBOOT_URL'));
+define('HUBOOT_KEY', getenv('HUBOOT_KEY'));
+define('HUBOOT_TOKEN', getenv('HUBOOT_TOKEN'));
+define('HUBOOT_GROUP_ID', getenv('HUBOOT_GROUP_ID'));
 
 // Função de formatação de tamanho
 function formatSizeUnits($bytes)
