@@ -1,0 +1,8 @@
+{
+    "require": {
+        "aws/aws-sdk-php": "^3.296",
+        "nesbot/carbon": "^2.72",
+        "google/cloud-storage": "^1.44",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

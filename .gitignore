@@ -1,0 +1,5 @@
+vendor
+.env
+*Zone.Identifier
+*.Identifier
+**/Zone.Identifier
