@@ -4,23 +4,31 @@ require __DIR__ . '/vendor/autoload.php'; // 1º passo
 
 use Aws\S3\S3Client;
 use Carbon\Carbon;
-use Dotenv\Dotenv;
 
-// Carrega o .env
-$dotenv = Dotenv::createImmutable(__DIR__); // __DIR__ deve conter o .env
-$dotenv->load();
+// Pega os argumentos do shell script
+// $argv[0] = nome do script
+// $argv[1] = S3_STORAGE_ACCESS_KEY_ID
+// $argv[2] = S3_STORAGE_SECRET_ACCESS_KEY
+// $argv[3] = S3_STORAGE_ENDPOINT
+// $argv[4] = S3_STORAGE_BUCKET
+// $argv[5] = HUBOOT_URL
+// $argv[6] = HUBOOT_KEY
+// $argv[7] = HUBOOT_TOKEN
+// $argv[8] = HUBOOT_GROUP_ID
 
-// Dados do S3 da Contabo
-define('S3_STORAGE_ACCESS_KEY_ID', getenv('S3_STORAGE_ACCESS_KEY_ID'));
-define('S3_STORAGE_SECRET_ACCESS_KEY', getenv('S3_STORAGE_SECRET_ACCESS_KEY'));
-define('S3_STORAGE_ENDPOINT', getenv('S3_STORAGE_ENDPOINT'));
-define('S3_STORAGE_BUCKET', getenv('S3_STORAGE_BUCKET'));
+if ($argc < 9) {
+    die("Erro: faltam parâmetros. Esperado 8 argumentos.\n");
+}
 
-define('HUBOOT_URL', getenv('HUBOOT_URL'));
-define('HUBOOT_KEY', getenv('HUBOOT_KEY'));
-define('HUBOOT_TOKEN', getenv('HUBOOT_TOKEN'));
-define('HUBOOT_GROUP_ID', getenv('HUBOOT_GROUP_ID'));
+define('S3_STORAGE_ACCESS_KEY_ID', $argv[1]);
+define('S3_STORAGE_SECRET_ACCESS_KEY', $argv[2]);
+define('S3_STORAGE_ENDPOINT', $argv[3]);
+define('S3_STORAGE_BUCKET', $argv[4]);
 
+define('HUBOOT_URL', $argv[5]);
+define('HUBOOT_KEY', $argv[6]);
+define('HUBOOT_TOKEN', $argv[7]);
+define('HUBOOT_GROUP_ID', $argv[8]);
 // Função de formatação de tamanho
 function formatSizeUnits($bytes)
 {
@@ -111,17 +119,17 @@ try {
     // Notificação
     $curl = curl_init();
     curl_setopt_array($curl, [
-        CURLOPT_URL => $_ENV['HUBOOT_URL'] . '?key=' . $_ENV['HUBOOT_KEY'],
+        CURLOPT_URL => HUBOOT_URL . '?key=' . HUBOOT_KEY,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => json_encode([
-            "id" =>  $_ENV['HUBOOT_GROUP_ID'],
+            "id" => HUBOOT_GROUP_ID,
             "message" => $messageFormated,
             "group" => true,
         ]),
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $_ENV['HUBOOT_TOKEN'],
+            'Authorization: Bearer ' . HUBOOT_TOKEN,
         ],
     ]);
     curl_exec($curl);
@@ -138,17 +146,17 @@ try {
     // Notificação de erro
     $curl = curl_init();
     curl_setopt_array($curl, [
-        CURLOPT_URL => $_ENV['HUBOOT_URL'] . '?key=' . $_ENV['HUBOOT_KEY'],
+        CURLOPT_URL => HUBOOT_URL . '?key=' . HUBOOT_KEY,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => json_encode([
-            "id" =>  $_ENV['HUBOOT_GROUP_ID'],
-            "message" =>  $messageFormated,
+            "id" => HUBOOT_GROUP_ID,
+            "message" => $messageFormated,
             "group" => true,
         ]),
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $_ENV['HUBOOT_TOKEN'],
+            'Authorization: Bearer ' . HUBOOT_TOKEN,
         ],
     ]);
     curl_exec($curl);
