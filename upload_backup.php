@@ -16,9 +16,6 @@ define('S3_STORAGE_SECRET_ACCESS_KEY', $_ENV['S3_STORAGE_SECRET_ACCESS_KEY']);
 define('S3_STORAGE_ENDPOINT', $_ENV['S3_STORAGE_ENDPOINT']);
 define('S3_STORAGE_BUCKET', $_ENV['S3_STORAGE_BUCKET']);
 
-
-
-
 // Função de formatação de tamanho
 function formatSizeUnits($bytes)
 {
