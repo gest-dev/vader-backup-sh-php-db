@@ -134,6 +134,8 @@ try {
     ]);
     curl_exec($curl);
     curl_close($curl);
+
+    echo "Backup enviado para o S3 com sucesso: $name (" . formatSizeUnits(filesize($dir . $name)) . ")\n";
 } catch (\Exception $e) {
 
     $messageFormated = "*Gestclin Hostinger*\n";
@@ -161,4 +163,6 @@ try {
     ]);
     curl_exec($curl);
     curl_close($curl);
+
+    echo "Erro ao realizar backup: " . $e->getMessage() . "\n";
 }
