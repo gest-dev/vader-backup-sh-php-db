@@ -19,10 +19,10 @@ mysqldump --host="$DB_HOST" --user="$DB_USER" --password="$DB_PASS" --default-ch
 # Permissões apropriadas para ambiente compartilhado
 chmod 644 "$fullpathbackupfile"
 
-# Retorna caminho do backup
-echo "$fullpathbackupfile"
-
 # Executa o script PHP de upload
 php "$PHP_UPLOAD_SCRIPT"
+
+# Retorna caminho do backup
+echo "$fullpathbackupfile"
 
 exit 0
