@@ -86,15 +86,15 @@ try {
     ]);
 
     // Apaga arquivos com mais de 20 dias
-    // $objects = $client->listObjects(['Bucket' => S3_STORAGE_BUCKET]);
-    // $objects = $objects['Contents'] ?? [];
+    $objects = $client->listObjects(['Bucket' => S3_STORAGE_BUCKET]);
+    $objects = $objects['Contents'] ?? [];
     $now = Carbon::now()->modify('-6 days');
 
-    // foreach ($objects as $object) {
-    //     if (Carbon::parse($object['LastModified'])->lt($now)) {
-    //         $client->deleteObject(['Bucket' => S3_STORAGE_BUCKET, 'Key' => $object['Key']]);
-    //     }
-    // }
+    foreach ($objects as $object) {
+        if (Carbon::parse($object['LastModified'])->lt($now)) {
+            $client->deleteObject(['Bucket' => S3_STORAGE_BUCKET, 'Key' => $object['Key']]);
+        }
+    }
 
     $dir = '/home/u431758052/domains/gestclin.com.br/script_bk/backups_mysql/';
     $newFile = dirList($dir);
